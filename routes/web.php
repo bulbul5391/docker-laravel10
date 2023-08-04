@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Events\MessageNotification;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +15,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/event', function(){
+    event(new MessageNotification('This our first broadcast message'));
+});
+
+Route::get('/listen', function(){
+    return view('listen');
 });

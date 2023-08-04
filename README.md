@@ -31,3 +31,44 @@ In other words, you don't need to have whole different OS (called guest OS) inst
 <p align="center">
     <img src="https://bdprescription.com/docker/01.png">
 </p>
+
+## Broadcasting In Laravel / Push Notification
+Run composer require pusher/pusher-php-server
+
+Update in .env file
+
+BROADCAST_DRIVER=pusher
+
+PUSHER_APP_ID=1639448
+PUSHER_APP_KEY=71f3c69486b58d4144f9
+PUSHER_APP_SECRET=24781b35222b0fc5549d
+PUSHER_HOST=
+PUSHER_PORT=443
+PUSHER_SCHEME=https
+PUSHER_APP_CLUSTER=ap2
+
+Run php artisan make:event MessageNotification
+
+Look app/Events/MessageNotification file
+
+Enable App\Providers\BroadcastServiceProvider::class, from providers section of app.php file.
+
+## Install Laravel Echo
+
+[Laravel Echo](https://laravel.com/docs/10.x/broadcasting#client-pusher-channels) is a JavaScript library that makes it painless to subscribe to channels and listen for events broadcast by your server-side broadcasting driver. You may install Echo via the NPM package manager. In this example, we will also install the pusher-js package.
+
+If get bash: npm: command not found. Copy and past in your docker file.
+
+#Install nodejs
+RUN apt-get update && apt-get upgrade -y && \
+    apt-get install -y nodejs \
+    npm
+RUN echo "Node: " && node -v
+RUN echo "NPM: " && npm -v
+
+npm install pusher-js laravel-echo --save
+
+composer require laravel/ui
+
+php artisan ui vue
+
