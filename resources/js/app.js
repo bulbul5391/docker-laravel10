@@ -14,7 +14,8 @@ import { createApp } from 'vue';
  */
 
 const app = createApp({
-    created(){
+    created($msg=''){
+        console.log('$msg = ', $msg);
         Echo.channel('notification')
             .listen('MessageNotification', (e) => {
                 alert('This is my first push notification');

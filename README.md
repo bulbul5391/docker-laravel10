@@ -1,6 +1,7 @@
-<p align="center"> <a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a> <a href="https://laravel.com" target="_blank"><img src="https://bdprescription.com/docker/docker-logo.png" width="400" alt="Laravel Logo"></a>
+<p align="center"> <a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a> 
+<a href="https://www.docker.com/" target="_blank"><img src="https://bdprescription.com/docker/docker-logo.png" width="400" alt="Docker Logo"></a>
+<a href="https://packagist.org/packages/pusher/pusher-php-server" target="_blank"><img src="https://pusher.com/static/pusher-logo-0576fd4af5c38706f96f632235f3124a.svg" width="400" alt="Pusher Logo"></a>
 </p>
-
 
 ## About Laravel
 
@@ -53,6 +54,9 @@ Look app/Events/MessageNotification file
 
 Enable App\Providers\BroadcastServiceProvider::class, from providers section of app.php file.
 
+Or you can clone pusher branch for source code.
+git clone --branch pusher --single-branch https://github.com/bulbul5391/docker-laravel10.git
+
 ## Install Laravel Echo
 
 [Laravel Echo](https://laravel.com/docs/10.x/broadcasting#client-pusher-channels) is a JavaScript library that makes it painless to subscribe to channels and listen for events broadcast by your server-side broadcasting driver. You may install Echo via the NPM package manager. In this example, we will also install the pusher-js package.
@@ -71,4 +75,11 @@ npm install pusher-js laravel-echo --save
 composer require laravel/ui
 
 php artisan ui vue
+
+
+##  Test Push Notification
+
+Run Command
+docker-compose up
+
 

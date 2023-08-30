@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Notification;
 use Illuminate\Http\Request;
+use App\Events\MessageNotification;
+use Validator;
 
 class NotificationController extends Controller
 {
@@ -12,15 +14,11 @@ class NotificationController extends Controller
      */
     public function index()
     {
-        //
+        echo 'dddddddd';
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function create(){
+        return view('notification.create');
     }
 
     /**
@@ -28,7 +26,32 @@ class NotificationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $rules = array(
+            'message' => 'required|max:255'
+        );
+        $messages = array(
+            'message.required' => 'The :attribute field is required!'
+        );
+        $validator = Validator::make($request->all(), $rules, $messages);
+        if ($validator->fails()) {
+            return response()->json(array('status' => 0, 'message' => $validator->errors()->first()));
+        }
+
+        $Notification = new Notification;
+        $Notification->message = $request->message;
+
+        if ($Notification->save()) {
+            // return response()->json(array('status' => 1,
+            //     'data' => $Notification,
+            //     'message' => 'Saved successfully!'));
+                $this->sendNotification($Notification->message);
+        } else {
+            return response()->json(array('status' => 0, 'message' => 'Save failed!'));
+        }
+    }
+
+    public function sendNotification($message){
+        event(new MessageNotification($message));
     }
 
     /**
@@ -61,5 +84,9 @@ class NotificationController extends Controller
     public function destroy(Notification $notification)
     {
         //
+    }
+
+    public function testing(){
+
     }
 }

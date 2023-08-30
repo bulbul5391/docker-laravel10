@@ -19,8 +19,11 @@ Route::get('/', function () {
 
 Route::get('/event', function(){
     event(new MessageNotification('This our first broadcast message'));
+    return view('event');
 });
 
 Route::get('/listen', function(){
     return view('listen');
 });
+
+Route::resource('/notification', 'NotificationController');
